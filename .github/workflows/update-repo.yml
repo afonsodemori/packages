@@ -1,0 +1,105 @@
+name: Update Package Repository
+on:
+  repository_dispatch:
+    types: [new-release]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
+
+      - name: Install Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gpg createrepo-c dpkg-dev apt-utils
+
+      - name: Download Assets from fns-cli
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          VERSION=${{ github.event.client_payload.version }}
+          mkdir -p temp/deb temp/rpm temp/apk
+          gh release download $VERSION -R afonsodemori/fns-cli -p "*.deb" -D ./temp/deb
+          gh release download $VERSION -R afonsodemori/fns-cli -p "*.rpm" -D ./temp/rpm
+          gh release download $VERSION -R afonsodemori/fns-cli -p "*.apk" -D ./temp/apk
+
+      - name: Export GPG Public Keys
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+          gpg --batch --yes --armor --export "${{ secrets.GPG_KEY_ID }}" > docs/afonso-dev.asc
+          gpg --batch --yes --export "${{ secrets.GPG_KEY_ID }}" > docs/afonso-dev.gpg
+
+      - name: Update Debian Repo (DEB)
+        run: |
+          mkdir -p docs/deb
+          cp temp/deb/*.deb docs/deb/
+          cd docs/deb
+          dpkg-scanpackages . /dev/null > Packages
+          gzip -9c Packages > Packages.gz
+
+          apt-ftparchive \
+            -o APT::FTPArchive::Release::Origin="afonso.dev" \
+            -o APT::FTPArchive::Release::Label="afonso.dev" \
+            -o APT::FTPArchive::Release::Suite="stable" \
+            -o APT::FTPArchive::Release::Codename="./" \
+            -o APT::FTPArchive::Release::Architectures="amd64 arm64" \
+            -o APT::FTPArchive::Release::Components="main" \
+            -o APT::FTPArchive::Release::Description="afonso.dev Package Repository" \
+            release . > Release
+
+          gpg --batch --yes \
+            --pinentry-mode loopback \
+            --default-key "${{ secrets.GPG_KEY_ID }}" \
+            --passphrase "${{ secrets.GPG_PASSPHRASE }}" \
+            --clearsign \
+            -o InRelease Release
+
+          gpg --batch --yes \
+            --pinentry-mode loopback \
+            --default-key "${{ secrets.GPG_KEY_ID }}" \
+            --passphrase "${{ secrets.GPG_PASSPHRASE }}" \
+            -abs \
+            -o Release.gpg Release
+
+      - name: Update RedHat Repo (RPM)
+        run: |
+          mkdir -p docs/rpm
+          cp temp/rpm/*.rpm docs/rpm/
+          createrepo_c docs/rpm/
+          gpg --batch --yes \
+            --pinentry-mode loopback \
+            --default-key "${{ secrets.GPG_KEY_ID }}" \
+            --passphrase "${{ secrets.GPG_PASSPHRASE }}" \
+            --detach-sign --armor docs/rpm/repodata/repomd.xml
+
+      - name: Update Alpine Repo (APK)
+        run: |
+          mkdir -p docs/apk
+          cp temp/apk/*.apk docs/apk/
+
+          echo "${{ secrets.ALPINE_PRIVATE_KEY }}" > private.rsa
+
+          docker run --rm \
+            -v ${{ github.workspace }}:/work \
+            -w /work \
+            alpine:latest sh -c "
+              apk add --no-cache abuild;
+              apk index -o docs/apk/APKINDEX.tar.gz docs/apk/*.apk;
+              abuild-sign -k private.rsa docs/apk/APKINDEX.tar.gz
+            "
+          rm private.rsa
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add docs/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update fns-cli packages for ${{ github.event.client_payload.version }}"
+            git push
+          fi

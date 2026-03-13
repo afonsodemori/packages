@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>afonso.dev Package Repository</title>
+    <style>
+      body {
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 2em auto;
+        padding: 0 1em;
+        color: #333;
+      }
+      h1 {
+        color: #000;
+        border-bottom: 3px solid #eee;
+        padding-bottom: 0.3em;
+      }
+      h2 {
+        margin-top: 2em;
+        color: #444;
+        border-bottom: 1px solid #eee;
+      }
+      code {
+        background: #f4f4f4;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      pre {
+        background: #2d2d2d;
+        color: #ccc;
+        padding: 15px;
+        overflow-x: auto;
+        border-radius: 5px;
+      }
+      .key-info {
+        background: #e7f3ff;
+        padding: 10px;
+        border-left: 5px solid #2196f3;
+      }
+    </style>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <h1>afonso.dev Package Repository</h1>
+    <p>Personal software repository for Debian, RPM, and Alpine Linux.</p>
+
+    <div class="key-info">
+      <strong>Public GPG Key:</strong>
+      <a href="/afonso-dev.asc">Download (.asc)</a>
+      |
+      <a href="/afonso-dev.gpg">Download (.gpg)</a>
+      <br />
+      <code>Fingerprint: E48A 5D44 3314 1C78 652A 8047 847D 92F2 2892 60A7</code>
+    </div>
+
+    <h2>Debian / Ubuntu</h2>
+    <p>Add the repository and import the key:</p>
+    <pre>
+# Import the key
+curl -fsSL https://pkg.afonso.dev/afonso-dev.gpg \
+  | sudo tee /usr/share/keyrings/afonso-dev.gpg > /dev/null
+
+# Add the repository
+echo "deb [signed-by=/usr/share/keyrings/afonso-dev.gpg] https://pkg.afonso.dev/deb ./" \
+  | sudo tee /etc/apt/sources.list.d/afonso-dev.list</pre
+    >
+
+    <h2>RedHat / Fedora / AlmaLinux</h2>
+    <p>
+      Create a repo file at
+      <code>/etc/yum.repos.d/afonso-dev.repo</code>
+      :
+    </p>
+    <pre>
+[afonso-dev]
+name=afonso.dev Package Repository
+baseurl=https://pkg.afonso.dev/rpm
+enabled=1
+gpgcheck=1
+gpgkey=https://pkg.afonso.dev/afonso-dev.asc</pre
+    >
+
+    <h2>Alpine Linux</h2>
+    <p>
+      Add the repository to your
+      <code>repositories</code>
+      file:
+    </p>
+    <pre>
+# Download the key to /etc/apk/keys/
+sudo wget -O /etc/apk/keys/afonso-dev.rsa.pub https://pkg.afonso.dev/afonso-dev.rsa.pub
+
+# Add the repo
+echo "https://pkg.afonso.dev/apk" | sudo tee -a /etc/apk/repositories
+sudo apk update</pre
+    >
+
+    <footer>
+      <p style="margin-top: 50px; font-size: 0.8em; color: #888">
+        Maintained by
+        <a href="https://github.com/afonsodemori" style="color: #888">afonsodemori</a>
+        |
+        <a href="https://afonso.dev" style="color: #888">afonso.dev</a>
+      </p>
+    </footer>
+  </body>
+</html>
