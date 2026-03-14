@@ -94,8 +94,8 @@ jobs:
             -w /work \
             alpine:latest sh -c "
               apk add --no-cache abuild;
-              cp public.rsa.pub /etc/apk/keys/your-key-name.rsa.pub;
-              apk index -o docs/apk/APKINDEX.tar.gz docs/apk/*.apk;
+              cp public.rsa.pub /etc/apk/keys/afonso-dev.rsa.pub;
+              apk index --allow-untrusted -o docs/apk/APKINDEX.tar.gz docs/apk/*.apk;
               abuild-sign -k /work/private.rsa /work/docs/apk/APKINDEX.tar.gz
             "
           rm private.rsa public.rsa.pub
