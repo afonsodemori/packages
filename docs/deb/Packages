@@ -1,0 +1,15 @@
+Package: fns-cli
+Version: 0.2.3
+Architecture: arm64
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 12545
+Filename: ./fns-cli_0.2.3_linux_arm64.deb
+Size: 6722196
+MD5sum: 9921cfa204a17cf3338f678614fb2e52
+SHA1: 7db3e1e4aacf02b9d4703302ff46a85053768a8e
+SHA256: 9131f3039e6ef11e96d86b7a27c42c5453be71b6e580647b7f402eefbfbfa477
+Priority: optional
+Homepage: https://fns-cli.afonso.dev
+Description: Streamline your dev workflow from the terminal.
+License: MIT
+
