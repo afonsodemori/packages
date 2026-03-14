@@ -2,10 +2,17 @@ name: Update Package Repository
 on:
   repository_dispatch:
     types: [new-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version of fns-cli to process (e.g., v0.2.3)'
+        required: true
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.client_payload.version || github.event.inputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,7 +27,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT }}
         run: |
-          VERSION=${{ github.event.client_payload.version }}
           mkdir -p temp/deb temp/rpm temp/apk
           gh release download $VERSION -R afonsodemori/fns-cli -p "*.deb" -D ./temp/deb
           gh release download $VERSION -R afonsodemori/fns-cli -p "*.rpm" -D ./temp/rpm
@@ -102,6 +108,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update fns-cli packages for ${{ github.event.client_payload.version }}"
+            git commit -m "Update fns-cli packages for $VERSION"
             git push
           fi
