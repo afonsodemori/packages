@@ -11,12 +11,12 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       VERSION: ${{ github.event.client_payload.version || github.event.inputs.version }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
 
       - name: Install Tools
         run: |
@@ -25,7 +25,7 @@ jobs:
 
       - name: Download Assets from fns-cli
         env:
-          GH_TOKEN: ${{ secrets.PAT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p temp/deb temp/rpm temp/apk
           gh release download $VERSION -R afonsodemori/fns-cli -p "*.deb" -D ./temp/deb
@@ -95,8 +95,9 @@ jobs:
             alpine:latest sh -c "
               apk add --no-cache abuild;
               cp public.rsa.pub /etc/apk/keys/afonso-dev.rsa.pub;
-              apk index --allow-untrusted -o docs/apk/APKINDEX.tar.gz docs/apk/*.apk;
+              apk index -o /work/docs/apk/APKINDEX.tar.gz /work/docs/apk/*.apk
               abuild-sign -k /work/private.rsa /work/docs/apk/APKINDEX.tar.gz
+              abuild-sign -k /work/private.rsa /work/docs/apk/fns-cli_0.2.3_linux_arm64.apk
             "
           rm private.rsa public.rsa.pub
 
