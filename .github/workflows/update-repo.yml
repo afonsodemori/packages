@@ -81,16 +81,18 @@ jobs:
           cp temp/apk/*.apk docs/apk/
 
           echo "${{ secrets.ALPINE_PRIVATE_KEY }}" > private.rsa
+          echo "${{ secrets.ALPINE_PUBLIC_KEY }}" > public.rsa.pub
 
           docker run --rm \
             -v ${{ github.workspace }}:/work \
             -w /work \
             alpine:latest sh -c "
               apk add --no-cache abuild;
+              cp public.rsa.pub /etc/apk/keys/your-key-name.rsa.pub;
               apk index -o docs/apk/APKINDEX.tar.gz docs/apk/*.apk;
-              abuild-sign -k private.rsa docs/apk/APKINDEX.tar.gz
+              abuild-sign -k /work/private.rsa /work/docs/apk/APKINDEX.tar.gz
             "
-          rm private.rsa
+          rm private.rsa public.rsa.pub
 
       - name: Commit and Push
         run: |
