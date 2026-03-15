@@ -1,24 +1,24 @@
 Architectures: amd64 arm64
 Codename: ./
 Components: main
-Date: Sun, 15 Mar 2026 02:19:03 +0000
+Date: Sun, 15 Mar 2026 02:43:56 +0000
 Description: afonso.dev Package Repository
 Label: afonso.dev
 Origin: afonso.dev
 Suite: stable
 MD5Sum:
  6b9c2f2b48088e0fec69a4aeed4da449              465 Packages
- 488439f070f16683edfd47c6d2bc7333              364 Packages.gz
- 9c0528b75aebe13b895a10fda80740d2              189 Release
+ 94878c47f2a32dbdeec4dd28bc06cebe              364 Packages.gz
+ 5e0961dafc4cf55a35277a12b4fbfc70              189 Release
 SHA1:
  3d261c76f237e264ded8e945a71ff060322413b0              465 Packages
- 28a3a8c658309579a6e6653cf7c985610fef6733              364 Packages.gz
- 591b3f968a6bff082376f92b78e5145677963227              189 Release
+ a5157f2a4f575463257d81c53c8aa0412dc5a0c5              364 Packages.gz
+ 7734b2bb4815cdf7ff65899ec694a2508d81b30a              189 Release
 SHA256:
  ebf91d8dfb73a551f0d19647d9be09151dca74ab19a0732b2c4f1f07d8e279a8              465 Packages
- e13047c78eba4db20fb4aaac926fdded5a2129e0eea9a5601f5b9dea92e34cc4              364 Packages.gz
- bfc2e81cab8c5b4970f5a7025f1fc4b5663aceeb69e629ebc44effb6186f4040              189 Release
+ 91189d6161e6ca672bf8c03cfe798f037fc99de7774b7c96c09b0d5a94f25ea8              364 Packages.gz
+ 348e36519858869f46eb42678a372e805a9ef8b64a46804d9f2d3cb19e83a1a0              189 Release
 SHA512:
  58e2f606c3d41f4932abb8fbf583cbf43da56f6e30b30f3044a5f30397a003a3dbcbb789263eb548b646cf1b7f5813f49a48690f82dc38f438ed1e5f53db9f1e              465 Packages
- 304648748080c9569c1071b66f537d292756a7b4a4776000f955b84ea3e1412a5588466f9e53a275fbf62a3657ef560cbcb19eb3a0e0b8e79b0f22b4f8805cf8              364 Packages.gz
- d8f269d65d21ec3cb7d6781894432a094400e5f54495ff57a299dfed5ad313c92af4851b1a78c691f9acf31ae1ac513e82166e22d44c2baade1946a2af67c75a              189 Release
+ 7d57d4368bdc288883ad43dbece85133afed39a46235fab689f744487f19a2baea84c5b3f979019bf78324cc5c9436fadd51d219d325844f24c43c2dcc95ddb9              364 Packages.gz
+ fc2fee68901d4e25dd04745402b1d843003099526a26136089ac23611315017b7144fa06ce58710ac1ef9795879b8af3890a9f2e4e85b30bdb8f879edffa971e              189 Release
