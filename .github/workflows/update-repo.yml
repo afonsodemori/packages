@@ -113,7 +113,9 @@ jobs:
           rm private.rsa public.rsa.pub
 
       - name: Generate Navigation
-        run: bin/generate-index.sh
+        run: |
+          sudo chown -R $USER:$USER docs/
+          bin/generate-index.sh
 
       - name: Commit and Push
         run: |
