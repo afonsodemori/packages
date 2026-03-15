@@ -94,19 +94,19 @@ jobs:
             -w /work \
             alpine:latest sh -c "
               apk add --no-cache abuild &&
-              cp /work/public.rsa.pub /etc/apk/keys/afonso-dev.rsa.pub &&
+              cp /work/public.rsa.pub /etc/apk/keys/afonso-dev.rsa.pub
 
-              mkdir -p /work/docs/apk/x86_64 /work/docs/apk/aarch64 &&
+              mkdir -p /work/docs/apk/x86_64 /work/docs/apk/aarch64
 
-              cp /work/docs/apk/*amd64*.apk /work/docs/apk/x86_64/ &&
-              cp /work/docs/apk/*arm64*.apk /work/docs/apk/aarch64/ &&
+              cp /work/docs/apk/*amd64*.apk /work/docs/apk/x86_64/
+              cp /work/docs/apk/*arm64*.apk /work/docs/apk/aarch64/
 
-              apk index --rewrite-arch x86_64  -o /work/docs/apk/x86_64/APKINDEX.tar.gz  /work/docs/apk/x86_64/*.apk &&
-              apk index --rewrite-arch aarch64 -o /work/docs/apk/aarch64/APKINDEX.tar.gz /work/docs/apk/aarch64/*.apk &&
+              apk index --rewrite-arch x86_64  -o /work/docs/apk/x86_64/APKINDEX.tar.gz  /work/docs/apk/x86_64/*.apk
+              apk index --rewrite-arch aarch64 -o /work/docs/apk/aarch64/APKINDEX.tar.gz /work/docs/apk/aarch64/*.apk
 
-              abuild-sign -k /work/private.rsa /work/docs/apk/x86_64/APKINDEX.tar.gz &&
-              abuild-sign -k /work/private.rsa /work/docs/apk/aarch64/APKINDEX.tar.gz &&
-              abuild-sign -k /work/private.rsa /work/docs/apk/x86_64/*amd64*.apk &&
+              abuild-sign -k /work/private.rsa /work/docs/apk/x86_64/APKINDEX.tar.gz
+              abuild-sign -k /work/private.rsa /work/docs/apk/aarch64/APKINDEX.tar.gz
+              abuild-sign -k /work/private.rsa /work/docs/apk/x86_64/*amd64*.apk
               abuild-sign -k /work/private.rsa /work/docs/apk/aarch64/*arm64*.apk
             "
 
