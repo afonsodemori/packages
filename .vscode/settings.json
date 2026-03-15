@@ -2,5 +2,8 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.autoSave": "onFocusChange",
-  "prettier.useEditorConfig": true
+  "prettier.useEditorConfig": true,
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt"
+  }
 }
