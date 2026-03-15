@@ -93,12 +93,23 @@ jobs:
             -v ${{ github.workspace }}:/work \
             -w /work \
             alpine:latest sh -c "
-              apk add --no-cache abuild;
-              cp public.rsa.pub /etc/apk/keys/afonso-dev.rsa.pub;
-              apk index -o /work/docs/apk/APKINDEX.tar.gz /work/docs/apk/*.apk
-              abuild-sign -k /work/private.rsa /work/docs/apk/APKINDEX.tar.gz
-              abuild-sign -k /work/private.rsa /work/docs/apk/fns-cli_0.2.3_linux_arm64.apk
+              apk add --no-cache abuild &&
+              cp /work/public.rsa.pub /etc/apk/keys/afonso-dev.rsa.pub &&
+
+              mkdir -p /work/docs/apk/x86_64 /work/docs/apk/aarch64 &&
+
+              cp /work/docs/apk/*amd64*.apk /work/docs/apk/x86_64/ &&
+              cp /work/docs/apk/*arm64*.apk /work/docs/apk/aarch64/ &&
+
+              apk index --rewrite-arch x86_64  -o /work/docs/apk/x86_64/APKINDEX.tar.gz  /work/docs/apk/x86_64/*.apk &&
+              apk index --rewrite-arch aarch64 -o /work/docs/apk/aarch64/APKINDEX.tar.gz /work/docs/apk/aarch64/*.apk &&
+
+              abuild-sign -k /work/private.rsa /work/docs/apk/x86_64/APKINDEX.tar.gz &&
+              abuild-sign -k /work/private.rsa /work/docs/apk/aarch64/APKINDEX.tar.gz &&
+              abuild-sign -k /work/private.rsa /work/docs/apk/x86_64/*amd64*.apk &&
+              abuild-sign -k /work/private.rsa /work/docs/apk/aarch64/*arm64*.apk
             "
+
           rm private.rsa public.rsa.pub
 
       - name: Commit and Push
