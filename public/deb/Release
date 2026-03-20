@@ -1,0 +1,24 @@
+Architectures: amd64 arm64
+Codename: ./
+Components: main
+Date: Fri, 20 Mar 2026 05:09:34 +0000
+Description: afonso.dev Package Repository
+Label: afonso.dev
+Origin: afonso.dev
+Suite: stable
+MD5Sum:
+ 5ab918f1a245f212ff3c24b0af5e3ed2              960 Packages
+ ac5c44f7945b4d8c9a37c4e053efbeea              503 Packages.gz
+ 0a3567a0a198ad9125eefe27062a9093              189 Release
+SHA1:
+ 11a52791b913c700361dac056904f2a2d39f359b              960 Packages
+ a2e2e91d0fac73a14d040987adb6c1dc177cbc0b              503 Packages.gz
+ aa2fa6d9956cdd8b33168809d310c50a14e5c0aa              189 Release
+SHA256:
+ e0a30f4bd67fefe6e1366710805d3c9313c3a43cfed5aafee4018940367f463c              960 Packages
+ 9cc6e8a3805e9863f2411669c3a15d93b7238f3b7dec76ce88588ab97d598745              503 Packages.gz
+ 6bb91562af1085719f6636f700e7aa71aa5273dcaa34424f8ff3374399e8560c              189 Release
+SHA512:
+ 99ee634a777e8a229b95247fede855ed4761aad58401a0da3ec69f518a4424cd9ac09ffa57c0978b2863a4d64bf8ae93ff8e1ca281c97f168897bc926a4ce1f3              960 Packages
+ 5e53e8f18d254fac51a03b99e890ac59d4b2a6c146065d61580afb087923c420fd5d463cae8318e8aebf0a512c4526b1ba15bc3033cc8d24cccf85a5c0e176a5              503 Packages.gz
+ 4882fc2295477a87eb1d30c2e82e89cafce4e98ff0293dcd86c1acd16c69ac6a12d746ea562261241c8c449fd2ccbe404e450709a3285a3ed05243999a4df262              189 Release
