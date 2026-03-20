@@ -1,0 +1,5 @@
+FROM alpine:3
+
+WORKDIR /builds/afonsodemori/packages
+
+RUN apk add --no-cache bash openssl

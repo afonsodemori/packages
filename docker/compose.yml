@@ -1,0 +1,33 @@
+services:
+  debian:
+    container_name: pkg-debian
+    build:
+      context: .
+      dockerfile: Dockerfile.debian
+    env_file:
+      - ../.env
+    volumes:
+      - /Users/afonso/dev/packages:/builds/afonsodemori/packages
+    command: sleep infinity
+
+  alpine:
+    container_name: pkg-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile.alpine
+    env_file:
+      - ../.env
+    volumes:
+      - /Users/afonso/dev/packages:/builds/afonsodemori/packages
+    command: sleep infinity
+
+  fedora:
+    container_name: pkg-fedora
+    build:
+      context: .
+      dockerfile: Dockerfile.fedora
+    env_file:
+      - ../.env
+    volumes:
+      - /Users/afonso/dev/packages:/builds/afonsodemori/packages
+    command: sleep infinity

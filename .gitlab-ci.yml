@@ -1,0 +1,122 @@
+stages:
+  - prepare
+  - update-package
+  - commit
+  - deploy
+
+variables:
+  # VERSION will be passed by the trigger or can be set manually
+  VERSION: ''
+
+fetch_assets:
+  stage: prepare
+  image: ubuntu:latest
+  before_script:
+    - apt-get update && apt-get install -y curl wget
+  script:
+    - bin/download-latest.sh
+    # Re-extract VERSION if it wasn't provided, to pass it to other jobs
+    - |
+      if [ -z "$VERSION" ]; then
+        REPO="afonsodemori/fns-cli"
+        VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" | grep '"tag_name"' | cut -d '"' -f4)
+      fi
+      echo "VERSION=$VERSION" > version.env
+  artifacts:
+    reports:
+      dotenv: version.env
+    paths:
+      - temp/
+    expire_in: 1 hour
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+
+update_deb_rpm:
+  stage: update-package
+  image: ubuntu:latest
+  dependencies:
+    - fetch_assets
+  before_script:
+    - apt-get update && apt-get install -y sudo curl wget gpg
+    - bin/install-tools.sh
+  script:
+    - bin/export-gpg-public-keys.sh
+    - bin/update-debian-repo.sh
+    - bin/update-redhat-repo.sh
+  artifacts:
+    paths:
+      - public/deb/
+      - public/rpm/
+      - public/afonso-dev.asc
+      - public/afonso-dev.gpg
+    expire_in: 1 hour
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+
+update_apk:
+  stage: update-package
+  image: alpine:latest
+  dependencies:
+    - fetch_assets
+  before_script:
+    - apk add --no-cache bash openssl curl
+  script:
+    # GITHUB_WORKSPACE must be empty to run the logic directly in Alpine
+    - GITHUB_WORKSPACE="" bin/update-alpine-repo.sh
+  artifacts:
+    paths:
+      - public/apk/
+      - public/afonso-dev.rsa.pub
+    expire_in: 1 hour
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+
+push_changes:
+  stage: commit
+  image: ubuntu:latest
+  dependencies:
+    - update_deb_rpm
+    - update_apk
+  before_script:
+    - apt-get update && apt-get install -y git coreutils
+  script:
+    - bin/generate-index.sh
+    - |
+      git config user.name "gitlab-ci"
+      git config user.email "gitlab-ci@gitlab.com"
+      git add public/
+      if git diff --staged --quiet; then
+        echo "No changes to commit"
+      else
+        git commit -m "feat(packages): update fns-cli packages to $VERSION"
+        # We assume GITLAB_TOKEN is a Project Access Token with write_repository permissions
+        git push "https://project-access-token:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" HEAD:main
+      fi
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 hour
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+
+pages:
+  stage: deploy
+  image: ubuntu:latest
+  needs:
+    - job: push_changes
+      optional: true
+  script:
+    - echo "Deploying to GitLab Pages"
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
