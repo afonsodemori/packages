@@ -29,3 +29,34 @@ Homepage: https://fns-cli.afonso.dev
 Description: Streamline your dev workflow from the terminal.
 License: MIT
 
+Package: fns-cli
+Version: 0.3.0
+Architecture: amd64
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 13721
+Filename: ./fns-cli_0.3.0_linux_amd64.deb
+Size: 7412460
+MD5sum: fa18f97a52b45df2891cea42a68550d6
+SHA1: 56325dc3d493c55d8f8d5d6034dd365e095ac32b
+SHA256: 600b2c0cf35b26e779533602e5748f2bd24c314521b0866d3a5015e1a6905644
+Priority: optional
+Homepage: https://fns-cli.afonso.dev
+Description: Streamline your dev workflow from the terminal.
+Architecture-Variant: amd64v1
+License: MIT
+
+Package: fns-cli
+Version: 0.3.0
+Architecture: arm64
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 12803
+Filename: ./fns-cli_0.3.0_linux_arm64.deb
+Size: 6818660
+MD5sum: d6e0f52b6cd2d7bd664ca2275c497883
+SHA1: 3a6033e6bd26b9b42da6bb78104e2e903d69927d
+SHA256: d8429618416a94f3fdfb17022327f3f23d26e2a56e56dbfa28660be481388d4e
+Priority: optional
+Homepage: https://fns-cli.afonso.dev
+Description: Streamline your dev workflow from the terminal.
+License: MIT
+
