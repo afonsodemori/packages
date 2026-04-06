@@ -4,40 +4,40 @@ Hash: SHA512
 Architectures: amd64 arm64
 Codename: ./
 Components: main
-Date: Wed, 25 Mar 2026 06:27:02 +0000
+Date: Mon, 06 Apr 2026 21:26:11 +0000
 Description: afonso.dev Package Repository
 Label: afonso.dev
 Origin: afonso.dev
 Suite: stable
 MD5Sum:
- b56de0dd287d34a44d33ab3136fb3448             1920 Packages
- 52c682569c4aa8e41ae939e1325dbaa2              728 Packages.gz
- c9e1484deb2d7dfc8f542f6934210db4              189 Release
+ ce63d710ee4d69991f287a1224d1ee53             2854 Packages
+ 3c2fcb5173dc386a07a67d76412e657e              940 Packages.gz
+ 3b97e1ab6c7d8c48824b87f1825d97b1              189 Release
 SHA1:
- 15788aa58914ee58bb9b54b470b9b2db509a107e             1920 Packages
- 8677f42e3e71cedec2f80d21ce527e76bf12c0a1              728 Packages.gz
- 06f46e8b384eac16888795f172370445a51eb9fa              189 Release
+ 096d674deac17e6d0acc481ceacfa0e1f69c340b             2854 Packages
+ 0a335d0689c2542615e43288ca9b1653020a2ba8              940 Packages.gz
+ f5284e60900ca6ca214cb0e96a7b671f0341b4da              189 Release
 SHA256:
- 001043b45130a41980a705a0215a5515f556504bf2a381729650bfd177e75b36             1920 Packages
- 2d3579f29412823255a82b5a7777c6a7b302fc298c7ebcb64d217f8e3a4d6817              728 Packages.gz
- 023e231160ce2459c375c43998c5570a2d01c5135a523e95b09e542a6a25953c              189 Release
+ 77b1d4a0840b9409f48a73dcef7804bb996cc29b614f7ae3cd6e28aa87d1357e             2854 Packages
+ 9bc663398e2e25b698a6a96883fdaf16fb7f0e7c09c6b5730ecb32bab579294e              940 Packages.gz
+ c05b92065391114dd787085b30a34510c3eb628d36459a8fc8fccba183cdd0f4              189 Release
 SHA512:
- 650153dce20a98f78a217c6f1850f9f01bf38ab3f99b63a252d2f4af4b506e24572d290f2293c69ed80d99100a2e5bca603206822c85aa81365420d8fd5e0fbb             1920 Packages
- 37cda3f3749af4114891aebf4ad819f079e07b53afd192db7db37f3cdb257b230ba21a3074edcea8c53d8b0a19b2350882a1544c1422d6deca87088c71db1cf3              728 Packages.gz
- 6057d7c93353ca4f7c4acbd30a8aec12fd083e494462cb93b726d3392acc2c86d7f1565f91dc6d0bcf992b00a5d4a84a003ecefcee1d4d4c702ce61356edf51a              189 Release
+ f48a1f5ee1a352437bae657ad0921a6739d2240163f6acf12a623206f5bfee803aaee86c02d1cd31def1674408455eb75bb2ed963153b06d4ac5aa9559e36d5f             2854 Packages
+ e45b4d7d20d54d026e817140fd939919592c03f7d6a7e11cb0880b09ce5af91dad7ea99c0db94f2c784d0d424c1251f93c69ac1af652d7ddff642091ee1adba9              940 Packages.gz
+ 926ffa968a23dedb79fbf96eafa2c646b3f53787ce058bbf89e2fe6e71d13375c7d742d783f243a054d53795ee6a158cce589f8de2243588980fc277acd303db              189 Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE5IpdRDMUHHhlKoBHhH2S8iiSYKcFAmnDgDYACgkQhH2S8iiS
-YKfI1Q/8DvAV8Ymv7ERUe03JpM1pE4EjFY7F9H+vqx3UkKNGKSb7BpiDhAVMUOk9
-yEmSBfCL2yjVSg/bKNwOOw8FNcHGU5UijGkTzzW+joohyuYxr+NgOJQOzEXrErVj
-YQH6MQN033F7quz0AA4gyr0muSxOvBEHq7p6ToLfSP1Kcnns9rspE3IBP1bwP1/j
-mijBQ0nOypB80WWbq1atBmtbemLmBQfoKbMJuauadSbywuSBnYhYZ52Acge9TL6U
-1U4MO1OxVXyUAsQo0K/k0AIRMnATGW5XZSqAMwWLQP7ZU2So8xTJ1IKh26dTq8yf
-W1ft0WCJ6ObNGA+RfiMPiNvhiKY4i0O+R3bhtw0Jw7BwLAUl50gtgwlL0C+nnMmp
-6aBIUJRJvmIICBeN6jHvaI6LlZ/HSqvEnsnTevbqSbN1CvuVSiTXdVwp1yTbWqQX
-Ra1vRrX17km406QUqLzlbQtDOAsKUUlaTIKfZrdumdRRrqJPF2XFASEAOthUDDEE
-ABrJ+GFb19012n+MavWFTZcNU1655jMOHbaykBcPFARriWyvwjtSbAtHa/v8vDvI
-IRjdFwudHnZ4i0t0QixNJfMzth+tNTcpa3Asl8ytlo109K1D4l87TM755N8he+oO
-XqfgRJdBg6tRyLbEg9HGFqlQ1QrNBmJ0NtxB5yr8Y4OW6iD7enQ=
-=Y8FH
+iQIzBAEBCgAdFiEE5IpdRDMUHHhlKoBHhH2S8iiSYKcFAmnUJPMACgkQhH2S8iiS
+YKc6Dg//UpnNuKouYi+k0Fy8IW8dYBEqbc8+KOgD6J35/pCIZd47jZFDAmgq3G3h
+vihpCOtVcDmYQzoPfImzatzEL5uEiw6xoEtYsqchvpYI7y5QAGSLags+dG6Ta9xN
+aTfDJfiVrPis/V9Q+ZEHgYtmOXexMNPkRttB+nUQpygpp+BQFtxNIj7kYND4q4IO
+DxylFr5elzYliTPBmmhIfvo0abIqF2dLvHggRPJVccrMYc9xalmB5wkVPKUN8cGS
+2Ndo1WkTxa+qCds8dhz5cDk1+U1K6JfsRrAnMvL0bFa9nLklrQnWc/Yic+27u7Z9
+StzwxmxkROtQxa6f6zIZVjJVBl/G4HvRFIRGaNiDdWy3bXiBR4RMG4dVTKGOq6+Q
+OMIz1u8+OR/fW/+h66aH1doP6R8lqwAkhn0qWqRsQF/IGIOyH3GwuNWQ3hnKrUiv
+S3L6cvg6AqlBDGkBxGXMBo5MFtx22WxauSa7H+0wcSbH6YvrRwLIf6hjPsGyXNuw
+qsnDzdPJ3BbzHh2DqNdJ9QW3N1eNjYN/+ZP0TYtz0WGS2PJWECIhqphW9P9m/iTn
+q/poLZemx/1CsU88vR9QCsDCKbjmWnp37rx7B/K2kDx/getSfXgfOfIKvOOCF+q6
+xn8+VRWxeFcUr+5iVBjHvNXaE2jKVfTWSckjfAAWhOUdZOGnNtI=
+=o003
 -----END PGP SIGNATURE-----
