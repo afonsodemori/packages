@@ -115,7 +115,7 @@ pages:
       optional: true
   script:
     - echo "Deploying to GitLab Pages"
-    - echo "{\"status\":\"up\", \"commit\":\"$CI_COMMIT_SHORT_SHA\", \"built_at\":\"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"}" > ./public/health.json
+    - echo "{\"status\":\"up\", \"service\":\"pkg\", \"commit\":\"$CI_COMMIT_SHORT_SHA\", \"built_at\":\"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"}" > ./public/health.json
   artifacts:
     paths:
       - public
