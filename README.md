@@ -1,30 +1,34 @@
-# afonso.dev Package Repository
+# packages
 
-This repository hosts the personal package repository for `fns-cli` and other custom tools maintained by [@afonsodemori](https://github.com/afonsodemori).
+Personal Linux package repository for [fns-cli](https://github.com/afonsodemori/fns-cli), distributed for Debian/Ubuntu, RedHat/Fedora, and Alpine Linux. Packages are GPG-signed, and the repository is deployed via GitLab Pages at **https://pkg.afonso.dev**.
 
-It is a fully automated, static package registry served directly from the `public/` folder (likely via GitHub Pages at `https://pkg.afonso.dev`), supporting Debian, RedHat, and Alpine Linux distributions across `amd64` and `arm64` architectures.
+## Supported Distributions
 
-## 📦 Supported Platforms & Installation
+| Distribution    | Format | Architectures       |
+| --------------- | ------ | ------------------- |
+| Debian / Ubuntu | `.deb` | `amd64`, `arm64`    |
+| RedHat / Fedora | `.rpm` | `amd64`, `arm64`    |
+| Alpine Linux    | `.apk` | `x86_64`, `aarch64` |
 
-The repository provides signed packages for multiple package managers. Follow the instructions below to add the repository and install `fns-cli` on your system.
+## Installing fns-cli
 
-### Debian / Ubuntu (`apt`)
+### Debian / Ubuntu
 
-```bash
+```sh
 # Import the GPG key
-curl -fsSL https://pkg.afonso.dev/afonso-dev.gpg | sudo tee /usr/share/keyrings/afonso-dev.gpg > /dev/null
+curl -fsSL https://pkg.afonso.dev/afonso-dev.gpg \
+  | sudo tee /usr/share/keyrings/afonso-dev.gpg > /dev/null
 
 # Add the repository
-echo "deb [signed-by=/usr/share/keyrings/afonso-dev.gpg] https://pkg.afonso.dev/deb ./" | sudo tee /etc/apt/sources.list.d/afonso-dev.list
+echo "deb [signed-by=/usr/share/keyrings/afonso-dev.gpg] https://pkg.afonso.dev/deb ./" \
+  | sudo tee /etc/apt/sources.list.d/afonso-dev.list
 
-# Install packages
 sudo apt update && sudo apt install fns-cli
-
 ```
 
-### RedHat / Fedora / AlmaLinux (`yum` / `dnf`)
+### RedHat / Fedora / AlmaLinux
 
-Create a new repository file at `/etc/yum.repos.d/afonso-dev.repo` with the following content:
+Create `/etc/yum.repos.d/afonso-dev.repo`:
 
 ```ini
 [afonso-dev]
@@ -33,46 +37,89 @@ baseurl=https://pkg.afonso.dev/rpm
 enabled=1
 gpgcheck=1
 gpgkey=https://pkg.afonso.dev/afonso-dev.asc
-
 ```
 
-### Alpine Linux (`apk`)
+Then install:
 
-```bash
-# 1. Download the repository public key
+```sh
+sudo dnf install fns-cli
+```
+
+### Alpine Linux
+
+```sh
+# Download the public key
 sudo wget -O /etc/apk/keys/afonso-dev.rsa.pub https://pkg.afonso.dev/afonso-dev.rsa.pub
 
-# 2. Add the repository to your system
+# Add the repository
 echo "https://pkg.afonso.dev/apk" | sudo tee -a /etc/apk/repositories
 
-# 3. Update and install
-sudo apk update
-
+sudo apk update && sudo apk add fns-cli
 ```
 
----
+## Development
 
-## ⚙️ How It Works (Automation)
+### Prerequisites
 
-This repository is maintained completely hands-off via a GitHub Actions workflow (`Update Package Repository`).
+- Docker (with Compose)
+- A `.env` file with the required signing keys (see `.env.example`)
 
-1. **Trigger:** The workflow listens for a `repository_dispatch` event of type `new-release`. This is typically triggered remotely by the `afonsodemori/fns-cli` repository whenever a new version is tagged.
-2. **Artifact Fetching:** It downloads the compiled `.deb`, `.rpm`, and `.apk` assets for the specified version using the GitHub CLI (`gh`).
-3. **Key Management:** Private GPG and RSA keys are imported from GitHub Secrets to sign the repositories, while the public equivalents (`.asc`, `.gpg`) are exported to the static site.
-4. **Repository Generation:**
-   - **DEB:** Uses `dpkg-scanpackages` and `apt-ftparchive` to generate `Packages.gz`, `Release`, and `InRelease` files.
-   - **RPM:** Uses `createrepo_c` to build the `repodata/` XML and SQLite metadata.
-   - **APK:** Spins up a lightweight Alpine Docker container to run `apk index` and `abuild-sign` to generate the `APKINDEX.tar.gz`.
+```sh
+cp .env.example .env
+# Fill in GPG_KEY_ID, GPG_PASSPHRASE, GPG_PRIVATE_KEY, ALPINE_PRIVATE_KEY
+```
 
-5. **Deployment:** The updated indices and new packages are committed directly to the `public/` directory, updating the static site automatically.
+### Common Commands
 
----
+```sh
+make update-version   # Full pipeline: clear old packages, download latest, regenerate repos
+make serve            # Start local HTTP server at http://localhost:8080
+```
 
-## 📂 Repository Structure
+### Pipeline Steps
 
-- `public/`: The root of the static site (served via GitHub Pages).
-- `index.html`: The landing page with installation instructions.
-- `apk/`: Alpine Linux package directory and signed `APKINDEX`.
-- `deb/`: Debian/Ubuntu package directory and `apt` metadata.
-- `rpm/`: RedHat/Fedora package directory and `repodata` metadata.
-- `*.gpg`, `*.asc`, `*.rsa.pub`: Public keys for package verification.
+`make update-version` runs the following inside Docker containers:
+
+1. **`bin/download-latest.sh`** — fetches the latest `.deb`, `.rpm`, and `.apk` packages (amd64 + arm64) from GitHub releases into `temp/`
+2. **`bin/export-gpg-public-keys.sh`** — exports the GPG public key to `public/`
+3. **`bin/update-debian-repo.sh`** — generates `Packages`, `Release`, `InRelease`, and `Release.gpg` inside `public/deb/`
+4. **`bin/update-redhat-repo.sh`** — runs `createrepo_c` and signs `repomd.xml` inside `public/rpm/`
+5. **`bin/update-alpine-repo.sh`** — generates and RSA-signs `APKINDEX.tar.gz` for each arch inside `public/apk/`
+6. **`bin/generate-index.sh`** — creates browsable HTML indexes for `public/`
+
+### Docker Containers
+
+Defined in `docker/compose.yml`:
+
+| Container    | Base Image | Purpose                                      |
+| ------------ | ---------- | -------------------------------------------- |
+| `pkg-debian` | Debian 13  | dpkg-dev, apt-utils, gnupg — Debian/RPM work |
+| `pkg-alpine` | Alpine 3   | apk-tools, abuild — Alpine APK signing       |
+| `pkg-fedora` | Fedora 43  | createrepo_c — RPM metadata generation       |
+
+### Integration Tests
+
+Requires Docker:
+
+```sh
+bash bin/test-install-on-debian.sh
+bash bin/test-install-on-alpine.sh
+bash bin/test-install-on-fedora.sh
+```
+
+## CI/CD
+
+Managed by `.gitlab-ci.yml` with four stages: `prepare` → `update-package` → `commit` → `deploy`. The pipeline can be triggered by webhook, manually, or on a schedule. Set `VERSION` as a CI variable to pin a specific release instead of using the latest.
+
+## GPG Key
+
+**Fingerprint:** `E48A 5D44 3314 1C78 652A 8047 847D 92F2 2892 60A7`
+
+Key files available at:
+
+- https://pkg.afonso.dev/afonso-dev.asc
+- https://pkg.afonso.dev/afonso-dev.gpg
+
+## License
+
+[MIT](LICENSE)

@@ -5,7 +5,5 @@ set -e
 sudo ln -sf $HOME/.fns-cli/container.bash_profile $HOME/fns-cli.bash_profile
 grep -qxF 'source ~/fns-cli.bash_profile' "$HOME/.bashrc" || printf '\nsource ~/fns-cli.bash_profile\n' >>"$HOME/.bashrc"
 
-# Ensure gemini directory is writable
-sudo chown -R vscode:vscode /home/vscode/.gemini || true
-
-npm install -g http-server
+echo "Installing http-server..."
+npm install -g http-server@latest
