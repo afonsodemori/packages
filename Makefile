@@ -4,7 +4,7 @@ PORT ?= 8080
 
 serve:
 	@echo "Starting local repository server at http://localhost:$(PORT)"
-	@npx http-server docs -p $(PORT) -c-1
+	@npx http-server public -p $(PORT) -c-1
 
 update-version:
 	rm -rf public/apk public/deb public/rpm temp
