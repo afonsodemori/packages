@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A package repository that distributes Linux binaries for multiple distributions (Debian/Ubuntu, RedHat/Fedora, Alpine Linux). It fetches releases from GitHub, signs them with GPG, generates repository metadata, and deploys to GitLab Pages.
 
-Current binaries distributed: `fns-cli`, `afonsodev-resume-updater`. New binaries can be added by triggering the CI pipeline with the `APP` variable set to the GitHub repo name under `afonsodemori/`.
+Current binaries distributed: `fns-cli`, `afonsodev-resume-sync`. New binaries can be added by triggering the CI pipeline with the `APP` variable set to the GitHub repo name under `afonsodemori/`.
 
 ## Common Commands
 

@@ -2,7 +2,7 @@
 
 A self-hosted Linux package repository that distributes personal CLI tools across Debian/Ubuntu, RedHat/Fedora, and Alpine Linux — without relying on any third-party package hosting.
 
-Currently distributing: [`fns-cli`](https://github.com/afonsodemori/fns-cli) and [`afonsodev-resume-updater`](https://github.com/afonsodemori/afonsodev-resume-updater).
+Currently distributing: [`fns-cli`](https://github.com/afonsodemori/fns-cli) and [`afonsodev-resume-sync`](https://github.com/afonsodemori/afonsodev-resume-sync).
 
 ## Install
 
