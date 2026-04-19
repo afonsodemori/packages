@@ -1,32 +1,22 @@
-# packages
+# pkg.afonso.dev
 
-Personal Linux package repository for [fns-cli](https://github.com/afonsodemori/fns-cli), distributed for Debian/Ubuntu, RedHat/Fedora, and Alpine Linux. Packages are GPG-signed, and the repository is deployed via GitLab Pages at **https://pkg.afonso.dev**.
+A self-hosted Linux package repository that distributes personal CLI tools across Debian/Ubuntu, RedHat/Fedora, and Alpine Linux — without relying on any third-party package hosting.
 
-## Supported Distributions
+Currently distributing: [`fns-cli`](https://github.com/afonsodemori/fns-cli) and [`afonsodev-resume-updater`](https://github.com/afonsodemori/afonsodev-resume-updater).
 
-| Distribution    | Format | Architectures       |
-| --------------- | ------ | ------------------- |
-| Debian / Ubuntu | `.deb` | `amd64`, `arm64`    |
-| RedHat / Fedora | `.rpm` | `amd64`, `arm64`    |
-| Alpine Linux    | `.apk` | `x86_64`, `aarch64` |
-
-## Installing fns-cli
+## Install
 
 ### Debian / Ubuntu
 
-```sh
-# Import the GPG key
+```bash
 curl -fsSL https://pkg.afonso.dev/afonso-dev.gpg \
   | sudo tee /usr/share/keyrings/afonso-dev.gpg > /dev/null
-
-# Add the repository
-echo "deb [signed-by=/usr/share/keyrings/afonso-dev.gpg] https://pkg.afonso.dev/deb ./" \
+echo 'deb [signed-by=/usr/share/keyrings/afonso-dev.gpg] https://pkg.afonso.dev/deb ./' \
   | sudo tee /etc/apt/sources.list.d/afonso-dev.list
-
-sudo apt update && sudo apt install fns-cli
+sudo apt update
 ```
 
-### RedHat / Fedora / AlmaLinux
+### RedHat / Fedora
 
 Create `/etc/yum.repos.d/afonso-dev.repo`:
 
@@ -39,86 +29,58 @@ gpgcheck=1
 gpgkey=https://pkg.afonso.dev/afonso-dev.asc
 ```
 
-Then install:
-
-```sh
-sudo dnf install fns-cli
-```
-
 ### Alpine Linux
 
-```sh
-# Download the public key
-sudo wget -O /etc/apk/keys/afonso-dev.rsa.pub https://pkg.afonso.dev/afonso-dev.rsa.pub
-
-# Add the repository
-echo "https://pkg.afonso.dev/apk" | sudo tee -a /etc/apk/repositories
-
-sudo apk update && sudo apk add fns-cli
+```bash
+curl -fsSL https://pkg.afonso.dev/afonso-dev.rsa.pub \
+  | sudo tee /etc/apk/keys/afonso-dev.rsa.pub > /dev/null
+echo 'https://pkg.afonso.dev/apk' | sudo tee -a /etc/apk/repositories
+sudo apk update
 ```
 
-## Development
+## How It Works
 
-### Prerequisites
+Releases are fetched from GitHub, signed with GPG/RSA, and packaged into distribution-native repository formats:
 
-- Docker (with Compose)
-- A `.env` file with the required signing keys (see `.env.example`)
+| Distro family | Format           | Metadata tool                          | Signing                                |
+| ------------- | ---------------- | -------------------------------------- | -------------------------------------- |
+| Debian/Ubuntu | `.deb` flat repo | `dpkg-scanpackages` + `apt-ftparchive` | GPG (InRelease + Release.gpg)          |
+| RedHat/Fedora | `.rpm` repo      | `createrepo_c`                         | GPG detached signature on `repomd.xml` |
+| Alpine Linux  | `.apk` index     | `apk index`                            | RSA via `abuild-sign`                  |
 
-```sh
-cp .env.example .env
-# Fill in GPG_KEY_ID, GPG_PASSPHRASE, GPG_PRIVATE_KEY, ALPINE_PRIVATE_KEY
+The pipeline runs inside Docker containers to isolate the distro-specific tooling, then deploys the `public/` directory as GitLab Pages.
+
+```
+GitHub Release → download → sign → generate repo metadata → GitLab Pages
 ```
 
-### Common Commands
+Each format follows its distribution's native conventions so package managers treat this as a standard repository — no custom clients or workarounds.
 
-```sh
-make update-version   # Full pipeline: clear old packages, download latest, regenerate repos
-make serve            # Start local HTTP server at http://localhost:8080
+## CI/CD
+
+Defined in `.gitlab-ci.yml` with 4 stages: `prepare → update-package → commit → deploy`.
+
+- Triggered by webhook, manually, or on a schedule
+- `APP` and `VERSION` are pipeline variables — omitting them defaults to the latest release of `fns-cli`
+- The `commit` stage pushes updated repo metadata back to `main` via a project access token
+- The `deploy` stage publishes `public/` to GitLab Pages
+
+## Local Development
+
+Requires Docker and a `.env` file (see `.env.example`):
+
+```bash
+make update-version   # full pipeline locally
+make serve            # browse repo at http://localhost:8080
 ```
 
-### Pipeline Steps
+Integration tests spin up a fresh Docker container, configure the local server as a package source, and verify installation end-to-end:
 
-`make update-version` runs the following inside Docker containers:
-
-1. **`bin/download-latest.sh`** — fetches the latest `.deb`, `.rpm`, and `.apk` packages (amd64 + arm64) from GitHub releases into `temp/`
-2. **`bin/export-gpg-public-keys.sh`** — exports the GPG public key to `public/`
-3. **`bin/update-debian-repo.sh`** — generates `Packages`, `Release`, `InRelease`, and `Release.gpg` inside `public/deb/`
-4. **`bin/update-redhat-repo.sh`** — runs `createrepo_c` and signs `repomd.xml` inside `public/rpm/`
-5. **`bin/update-alpine-repo.sh`** — generates and RSA-signs `APKINDEX.tar.gz` for each arch inside `public/apk/`
-6. **`bin/generate-index.sh`** — creates browsable HTML indexes for `public/`
-
-### Docker Containers
-
-Defined in `docker/compose.yml`:
-
-| Container    | Base Image | Purpose                                      |
-| ------------ | ---------- | -------------------------------------------- |
-| `pkg-debian` | Debian 13  | dpkg-dev, apt-utils, gnupg — Debian/RPM work |
-| `pkg-alpine` | Alpine 3   | apk-tools, abuild — Alpine APK signing       |
-| `pkg-fedora` | Fedora 43  | createrepo_c — RPM metadata generation       |
-
-### Integration Tests
-
-Requires Docker:
-
-```sh
+```bash
 bash bin/test-install-on-debian.sh
 bash bin/test-install-on-alpine.sh
 bash bin/test-install-on-fedora.sh
 ```
-
-## CI/CD
-
-Managed by `.gitlab-ci.yml` with four stages: `prepare` → `update-package` → `commit` → `deploy`. The pipeline can be triggered by webhook, manually, or on a schedule. Set `VERSION` as a CI variable to pin a specific release instead of using the latest.
-
-## GPG Key
-
-**Fingerprint:** `E48A 5D44 3314 1C78 652A 8047 847D 92F2 2892 60A7`
-
-Key files available at:
-
-- https://pkg.afonso.dev/afonso-dev.asc
-- https://pkg.afonso.dev/afonso-dev.gpg
 
 ## License
 

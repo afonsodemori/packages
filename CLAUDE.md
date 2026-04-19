@@ -4,19 +4,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Project Is
 
-A package repository that distributes `fns-cli` for multiple Linux distributions (Debian/Ubuntu, RedHat/Fedora, Alpine Linux). It fetches releases from GitHub, signs them with GPG, generates repository metadata, and deploys to GitLab Pages.
+A package repository that distributes Linux binaries for multiple distributions (Debian/Ubuntu, RedHat/Fedora, Alpine Linux). It fetches releases from GitHub, signs them with GPG, generates repository metadata, and deploys to GitLab Pages.
+
+Current binaries distributed: `fns-cli`, `afonsodev-resume-updater`. New binaries can be added by triggering the CI pipeline with the `APP` variable set to the GitHub repo name under `afonsodemori/`.
 
 ## Common Commands
+
+> **Prerequisite:** `make` commands require a `.env` file (copy `.env.example` and fill in secrets). The Makefile uses `include .env` and will fail without it.
 
 ```bash
 make serve              # Start local HTTP server at http://localhost:8080
 make update-version     # Full pipeline: clear old packages, download latest, regenerate repos
 ```
 
+To update packages for a project other than `fns-cli`, set the `APP` env var:
+
+```bash
+APP=other-app make update-version
+APP=other-app bash bin/download-latest.sh
+```
+
 Individual bin scripts (run directly or via `make update-version`):
 
 ```bash
-bash bin/download-latest.sh       # Fetch latest fns-cli from GitHub releases
+bash bin/download-latest.sh       # Fetch latest release from GitHub (APP env var selects the project)
 bash bin/export-gpg-public-keys.sh
 bash bin/update-debian-repo.sh
 bash bin/update-redhat-repo.sh
@@ -54,6 +65,10 @@ bash bin/test-install-on-fedora.sh
 - `fedora` — Fedora 43 + createrepo_c
 
 The devcontainer (`.devcontainer/`) is separate and used for local development.
+
+> **Local volume path:** `docker/compose.yml` hardcodes `/Users/afonso/dev/packages` as the bind-mount source. Update this path if the repo is checked out elsewhere before running `make update-version`.
+
+The Alpine signing script (`bin/update-alpine-repo.sh`) also hardcodes `/builds/afonsodemori/packages/private.rsa` as the RSA key path — this matches the CI runner's workspace. When running locally via Docker, the bind-mount maps the repo to that same path.
 
 ### Environment Variables
 
