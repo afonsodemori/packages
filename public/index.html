@@ -160,10 +160,8 @@ gpgkey=https://pkg.afonso.dev/afonso-dev.asc</pre
       file:
     </p>
     <pre>
-# Download the key to /etc/apk/keys/
-sudo wget -O /etc/apk/keys/afonso-dev.rsa.pub https://pkg.afonso.dev/afonso-dev.rsa.pub
-
-# Add the repo
+curl -fsSL https://pkg.afonso.dev/afonso-dev.rsa.pub \
+  | sudo tee /etc/apk/keys/afonso-dev.rsa.pub > /dev/null
 echo "https://pkg.afonso.dev/apk" | sudo tee -a /etc/apk/repositories
 sudo apk update</pre
     >
