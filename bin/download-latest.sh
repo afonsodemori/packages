@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-REPO="afonsodemori/fns-cli"
+APP="${APP:-fns-cli}"
+REPO="afonsodemori/${APP}"
 if [ -z "${VERSION}" ]; then
   VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" |
     grep '"tag_name"' |
@@ -16,7 +17,7 @@ ARCHS=(amd64 arm64)
 EXTS=(apk deb rpm)
 for ARCH in "${ARCHS[@]}"; do
   for EXT in "${EXTS[@]}"; do
-    URL="https://github.com/${REPO}/releases/download/${VERSION}/fns-cli_${V_STRIPPED}_linux_${ARCH}.${EXT}"
+    URL="https://github.com/${REPO}/releases/download/${VERSION}/${APP}_${V_STRIPPED}_linux_${ARCH}.${EXT}"
     echo "${URL}"
     wget -q "${URL}" -P ./temp
   done

@@ -22,9 +22,10 @@ apk index --allow-untrusted --rewrite-arch aarch64 -o public/apk/aarch64/APKINDE
 abuild-sign -k /builds/afonsodemori/packages/private.rsa public/apk/x86_64/APKINDEX.tar.gz
 abuild-sign -k /builds/afonsodemori/packages/private.rsa public/apk/aarch64/APKINDEX.tar.gz
 
+APP="${APP:-fns-cli}"
 for pkg in public/apk/x86_64/*.apk public/apk/aarch64/*.apk; do
   [ -f "$pkg" ] && abuild-sign -k /builds/afonsodemori/packages/private.rsa "$pkg"
-  new_name=${pkg/fns-cli_/fns-cli-}
+  new_name=${pkg/${APP}_/${APP}-}
   new_name=${new_name/_linux_amd64/}
   new_name=${new_name/_linux_arm64/}
   mv -v $pkg $new_name
