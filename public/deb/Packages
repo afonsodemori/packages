@@ -1,3 +1,32 @@
+Package: afonsodev-resume-updater
+Version: 2.0.0
+Architecture: amd64
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 12430
+Filename: ./afonsodev-resume-updater_2.0.0_linux_amd64.deb
+Size: 6566198
+MD5sum: 4edf88ae89fafe131763fedafcb742f1
+SHA1: d4c355b0efa45280aa2209a6edde7659e694c755
+SHA256: 08a569f2cbaa907131e8fcb8654cceef38ea2546d811398f4c1879f9593bb1d3
+Priority: optional
+Homepage: https://github.com/afonsodemori/afonsodev-resume-updater
+Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
+Architecture-Variant: amd64v1
+
+Package: afonsodev-resume-updater
+Version: 2.0.0
+Architecture: arm64
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 11564
+Filename: ./afonsodev-resume-updater_2.0.0_linux_arm64.deb
+Size: 6000928
+MD5sum: b05be81f29d3c346e796e78e6cc198f6
+SHA1: e137b4be379d42b66da5875a62404c6adaef0c23
+SHA256: 392d8272d4113c348272deb069c4e6b237fa4ea709a54cba6c7583745c2241ec
+Priority: optional
+Homepage: https://github.com/afonsodemori/afonsodev-resume-updater
+Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
+
 Package: fns-cli
 Version: 0.2.3
 Architecture: amd64

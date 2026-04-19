@@ -4,40 +4,40 @@ Hash: SHA512
 Architectures: amd64 arm64
 Codename: ./
 Components: main
-Date: Mon, 06 Apr 2026 21:26:11 +0000
+Date: Sun, 19 Apr 2026 08:37:18 +0000
 Description: afonso.dev Package Repository
 Label: afonso.dev
 Origin: afonso.dev
 Suite: stable
 MD5Sum:
- ce63d710ee4d69991f287a1224d1ee53             2854 Packages
- 3c2fcb5173dc386a07a67d76412e657e              940 Packages.gz
- 3b97e1ab6c7d8c48824b87f1825d97b1              189 Release
+ 60876d3be41297ad699114162ce63964             3990 Packages
+ 0218066746f9b224d18d9c120053a284             1270 Packages.gz
+ e0b381e0af1c7875b720e65ec2dc0d27              189 Release
 SHA1:
- 096d674deac17e6d0acc481ceacfa0e1f69c340b             2854 Packages
- 0a335d0689c2542615e43288ca9b1653020a2ba8              940 Packages.gz
- f5284e60900ca6ca214cb0e96a7b671f0341b4da              189 Release
+ 78fa197a774ae3553f79c61394d9c72c294878fe             3990 Packages
+ 82754d05e5c51761caa113c9ec495ff025da9e3d             1270 Packages.gz
+ 2d29654b399b6d98209ddf43a26c0d131de95b37              189 Release
 SHA256:
- 77b1d4a0840b9409f48a73dcef7804bb996cc29b614f7ae3cd6e28aa87d1357e             2854 Packages
- 9bc663398e2e25b698a6a96883fdaf16fb7f0e7c09c6b5730ecb32bab579294e              940 Packages.gz
- c05b92065391114dd787085b30a34510c3eb628d36459a8fc8fccba183cdd0f4              189 Release
+ d6be726e49b3f0612000695293bbb4cb18cbc9db3ea4e9d1de4ec7da98242571             3990 Packages
+ 5438badf223a8efe059c33935c4002032bd3962ee1f81da824873b50d0e50506             1270 Packages.gz
+ 904a7d59a828bdcdc02c5527fe55ae4890172862caef24b476cde20d5a37ab96              189 Release
 SHA512:
- f48a1f5ee1a352437bae657ad0921a6739d2240163f6acf12a623206f5bfee803aaee86c02d1cd31def1674408455eb75bb2ed963153b06d4ac5aa9559e36d5f             2854 Packages
- e45b4d7d20d54d026e817140fd939919592c03f7d6a7e11cb0880b09ce5af91dad7ea99c0db94f2c784d0d424c1251f93c69ac1af652d7ddff642091ee1adba9              940 Packages.gz
- 926ffa968a23dedb79fbf96eafa2c646b3f53787ce058bbf89e2fe6e71d13375c7d742d783f243a054d53795ee6a158cce589f8de2243588980fc277acd303db              189 Release
+ eadc1a08b03d2398d747d8f124779056dcd92c7d3904db3e16d35bf6402ca6d3482e668fd93758daed26fb2b53a594a99bbea5eb23c86c0574c6e215977195ea             3990 Packages
+ 7d875f59dccf1cd9f485f96ee666bdc714ed5b56f062639f3cde83cbec90e6f9c8e9f1d86004cd8831b0e52e902d0ba57514f221eedac98d74ff83b67bfe14c5             1270 Packages.gz
+ aae67fc30a65b0faf80c0f26177d3f05052fa6442b90e82114b7af4209e545fba55f008fbeb80b3477706c56608039a66fe78b026193b11228e89105c5f7a893              189 Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE5IpdRDMUHHhlKoBHhH2S8iiSYKcFAmnUJPMACgkQhH2S8iiS
-YKc6Dg//UpnNuKouYi+k0Fy8IW8dYBEqbc8+KOgD6J35/pCIZd47jZFDAmgq3G3h
-vihpCOtVcDmYQzoPfImzatzEL5uEiw6xoEtYsqchvpYI7y5QAGSLags+dG6Ta9xN
-aTfDJfiVrPis/V9Q+ZEHgYtmOXexMNPkRttB+nUQpygpp+BQFtxNIj7kYND4q4IO
-DxylFr5elzYliTPBmmhIfvo0abIqF2dLvHggRPJVccrMYc9xalmB5wkVPKUN8cGS
-2Ndo1WkTxa+qCds8dhz5cDk1+U1K6JfsRrAnMvL0bFa9nLklrQnWc/Yic+27u7Z9
-StzwxmxkROtQxa6f6zIZVjJVBl/G4HvRFIRGaNiDdWy3bXiBR4RMG4dVTKGOq6+Q
-OMIz1u8+OR/fW/+h66aH1doP6R8lqwAkhn0qWqRsQF/IGIOyH3GwuNWQ3hnKrUiv
-S3L6cvg6AqlBDGkBxGXMBo5MFtx22WxauSa7H+0wcSbH6YvrRwLIf6hjPsGyXNuw
-qsnDzdPJ3BbzHh2DqNdJ9QW3N1eNjYN/+ZP0TYtz0WGS2PJWECIhqphW9P9m/iTn
-q/poLZemx/1CsU88vR9QCsDCKbjmWnp37rx7B/K2kDx/getSfXgfOfIKvOOCF+q6
-xn8+VRWxeFcUr+5iVBjHvNXaE2jKVfTWSckjfAAWhOUdZOGnNtI=
-=o003
+iQIzBAEBCgAdFiEE5IpdRDMUHHhlKoBHhH2S8iiSYKcFAmnklD4ACgkQhH2S8iiS
+YKeHqg//TB5bEh/SJAbasPajIxS/SIbHSLpGufqSTQRcmotCBzQ4c3tt02sXh2Jx
+yBYqb80l29iZG48kITeeY+8KkJHxiJeWcLgpljoPiBRPT49lu/T8ZvieC16iszT0
+rUgBDcPw0gA1WwkFGfC0NHP6rWcACQAwHP6WzGiI8JJ9gKMZVSw4jfUpS+4H+Bq6
+iPfp+NgpGoRe/uCLh2MwtDgNXkU3eLhbygQaacTQzm4XBwy8bUkd4yAOkIAJdMOb
+uyaEWKN4jf3b1AOha5mP1/boZGmYZlzUzf1Dy6Af3gKASItSepijIjCjLpdsNpfw
+EQp4AGQMgIbhMdh1C5WnsLk9X6YmA7Wnq76VpFoiB9wHk8OT1HO9cBfcwry3i3T8
+GVfKN/Ra4p0yxhMrMR/BLMMz56rm9fMvCKNooQxHLY4Ny9Zz0r1ohT44x/DI0zUa
+zmcH1qLbjMILuKpb8T8lO6sAtK9XNITFrJqGWQr4tYUJyJOHgLzVW2CxDzzs0goP
+nj6k8Z6ms1PF5PkbRG+EZE+qawxXXgp1b71c00Ra7jcIclpv8y3Thk5q1jh8jg00
+iFWUjEc5i5rr/mYE7sF59tUa3G19cN0Mc4gqwARavExtcAQu9/uZOT19vXRBE+dI
+webMmUBnWMDOJgrsuSIjKVwP4AyPFgulaAX8G8S3ViiOPzFkxo0=
+=TZWh
 -----END PGP SIGNATURE-----
