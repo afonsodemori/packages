@@ -11,6 +11,7 @@ RUN apt-get update \
     gnupg \
     dpkg-dev \
     apt-utils \
+    dialog \
     curl \
     wget \
     vim \

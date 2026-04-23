@@ -3,6 +3,7 @@ include .env
 PORT ?= 8080
 
 serve:
+	@./bin/generate-index.sh
 	@echo "Starting local repository server at http://localhost:$(PORT)"
 	@npx http-server public -p $(PORT) -c-1
 
