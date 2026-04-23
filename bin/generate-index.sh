@@ -24,9 +24,9 @@ generate_index() {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: "Roboto Mono", monospace; font-optical-sizing: auto; margin: 20px; color: #c5cae9; background-color: #363457; }
-        a { color: #f1c40f; }
-        a:hover { color: #fde68a; }
+        body { font-family: "Roboto Mono", monospace; font-weight: 200; font-optical-sizing: auto; margin: 20px; color: #c5cae9; background-color: #363457; }
+        a { color: #f1c40f; text-decoration: none; }
+        a:hover { text-decoration: underline; }
         h1 { font-size: 1.5em; }
         table { border-collapse: collapse; width: 100%; }
         th, td { text-align: left; padding: 8px; border-bottom: 1px solid rgba(0, 0, 0, 0.5) }
