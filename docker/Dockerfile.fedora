@@ -1,3 +1,5 @@
 FROM fedora:43
 
 WORKDIR /builds/afonsodemori/packages
+
+RUN dnf install -y createrepo_c rpm-sign gnupg2 && dnf clean all

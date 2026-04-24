@@ -35,7 +35,7 @@ fetch_assets:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "pipeline"
 
-update_deb_rpm:
+update_deb:
   stage: update-package
   image: ubuntu:latest
   dependencies:
@@ -46,13 +46,29 @@ update_deb_rpm:
   script:
     - bin/export-gpg-public-keys.sh
     - bin/update-debian-repo.sh
-    - bin/update-redhat-repo.sh
   artifacts:
     paths:
       - public/deb/
-      - public/rpm/
       - public/afonso-dev.asc
       - public/afonso-dev.gpg
+    expire_in: 1 hour
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+
+update_rpm:
+  stage: update-package
+  image: fedora:latest
+  dependencies:
+    - fetch_assets
+  before_script:
+    - dnf install -y createrepo_c rpm-sign gnupg2
+  script:
+    - bin/update-redhat-repo.sh
+  artifacts:
+    paths:
+      - public/rpm/
     expire_in: 1 hour
   rules:
     - if: $CI_PIPELINE_SOURCE == "trigger"
@@ -83,7 +99,8 @@ push_changes:
   stage: commit
   image: ubuntu:latest
   dependencies:
-    - update_deb_rpm
+    - update_deb
+    - update_rpm
     - update_apk
   before_script:
     - apt-get update && apt-get install -y git coreutils

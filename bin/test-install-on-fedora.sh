@@ -14,7 +14,7 @@ tee afonso-dev.repo <<EOF
 name=afonso.dev Package Repository
 baseurl=http://host.docker.internal:${PORT}/rpm
 enabled=1
-gpgcheck=0
+gpgcheck=1
 gpgkey=http://host.docker.internal:${PORT}/afonso-dev.asc
 EOF
 ${DOCKER} sh -c "mv afonso-dev.repo /etc/yum.repos.d/afonso-dev.repo"
