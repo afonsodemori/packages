@@ -129,9 +129,6 @@ push_changes:
 pages:
   stage: deploy
   image: ubuntu:latest
-  needs:
-    - job: push_changes
-      optional: true
   script:
     - echo "Deploying to GitLab Pages"
     - echo "{\"status\":\"up\", \"service\":\"pkg\", \"commit\":\"$CI_COMMIT_SHORT_SHA\", \"built_at\":\"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"}" > ./public/health.json
@@ -139,4 +136,6 @@ pages:
     paths:
       - public
   rules:
+    - if: $CI_PIPELINE_SOURCE == "trigger" || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "pipeline"
+      when: never
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
