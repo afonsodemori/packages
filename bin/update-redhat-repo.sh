@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+: "${GPG_KEY_ID:?}"
+: "${GPG_PRIVATE_KEY:?}"
+: "${GPG_PASSPHRASE:?}"
+
 echo "${GPG_PRIVATE_KEY}" | base64 -d | gpg --batch --import
 
 mkdir -p public/rpm

@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-APP="${APP:-fns-cli}"
+: "${APP:?}"
+
 REPO="afonsodemori/${APP}"
 if [ -z "${VERSION}" ]; then
   VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" |

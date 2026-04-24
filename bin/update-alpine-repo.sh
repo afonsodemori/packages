@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+: "${APP:?}"
+: "${ALPINE_PRIVATE_KEY:?}"
+
 mkdir -p public/apk
 cp temp/*.apk public/apk/
 
@@ -23,7 +26,6 @@ apk index --allow-untrusted --rewrite-arch aarch64 -o public/apk/aarch64/APKINDE
 abuild-sign -k /builds/afonsodemori/packages/private.rsa public/apk/x86_64/APKINDEX.tar.gz
 abuild-sign -k /builds/afonsodemori/packages/private.rsa public/apk/aarch64/APKINDEX.tar.gz
 
-APP="${APP:-fns-cli}"
 for pkg in public/apk/x86_64/*_linux_amd64*.apk public/apk/aarch64/*_linux_arm64*.apk; do
   [ -f "$pkg" ] || continue
   abuild-sign -k /builds/afonsodemori/packages/private.rsa "$pkg"

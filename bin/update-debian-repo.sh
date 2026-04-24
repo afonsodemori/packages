@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+: "${GPG_KEY_ID:?}"
+: "${GPG_PASSPHRASE:?}"
+
 mkdir -p public/deb
 cp temp/*.deb public/deb/
 cd public/deb
