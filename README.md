@@ -40,15 +40,7 @@ sudo apk update
 
 ## How It Works
 
-Releases are fetched from GitHub, signed with GPG/RSA, and packaged into distribution-native repository formats:
-
-| Distro family | Format           | Metadata tool                          | Signing                                |
-| ------------- | ---------------- | -------------------------------------- | -------------------------------------- |
-| Debian/Ubuntu | `.deb` flat repo | `dpkg-scanpackages` + `apt-ftparchive` | GPG (InRelease + Release.gpg)          |
-| RedHat/Fedora | `.rpm` repo      | `createrepo_c`                         | GPG detached signature on `repomd.xml` |
-| Alpine Linux  | `.apk` index     | `apk index`                            | RSA via `abuild-sign`                  |
-
-The pipeline runs inside Docker containers to isolate the distro-specific tooling, then deploys the `public/` directory as GitLab Pages.
+Releases are fetched from GitHub, signed with GPG/RSA, and packaged into each distribution's native repository format (`.deb`, `.rpm`, `.apk`). The pipeline runs inside Docker containers to isolate the distro-specific tooling, then deploys the result to GitLab Pages.
 
 ```
 GitHub Release → download → sign → generate repo metadata → GitLab Pages
@@ -60,7 +52,7 @@ Each format follows its distribution's native conventions so package managers tr
 
 Defined in `.gitlab-ci.yml` with 4 stages: `prepare → update-package → commit → deploy`.
 
-- Triggered by webhook, manually, or on a schedule
+- Triggered by webhook or manually
 - `APP` and `VERSION` are pipeline variables — omitting them defaults to the latest release of `fns-cli`
 - The `commit` stage pushes updated repo metadata back to `main` via a project access token
 - The `deploy` stage publishes `public/` to GitLab Pages

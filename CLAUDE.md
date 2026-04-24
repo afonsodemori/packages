@@ -28,6 +28,7 @@ Individual bin scripts (run directly or via `make update-version`):
 
 ```bash
 bash bin/download-latest.sh       # Fetch latest release from GitHub (APP env var selects the project)
+bash bin/install-tools.sh         # Install distro-specific tools (dpkg-dev, apt-utils, gnupg, createrepo-c) — used in CI and inside Debian container locally
 bash bin/export-gpg-public-keys.sh
 bash bin/update-debian-repo.sh
 bash bin/update-redhat-repo.sh
@@ -76,10 +77,24 @@ Required for signing and CI (see `.env.example`):
 
 - `GPG_KEY_ID`, `GPG_PASSPHRASE`, `GPG_PRIVATE_KEY` (base64) — for Debian/RPM signing
 - `ALPINE_PRIVATE_KEY` (base64) — RSA key for Alpine APK signing
+- `GITLAB_TOKEN` — project access token with `write_repository` scope; used by CI's `commit` stage to push back to `main`
+
+### APK Output Structure
+
+Alpine packages are split into arch subdirectories under `public/apk/`:
+
+- `public/apk/x86_64/` — amd64 packages + `APKINDEX.tar.gz`
+- `public/apk/aarch64/` — arm64 packages + `APKINDEX.tar.gz`
+
+`bin/update-alpine-repo.sh` also renames packages: `_linux_amd64` and `_linux_arm64` suffixes are stripped so filenames match Alpine's naming convention (e.g., `fns-cli-1.0.0.apk`).
 
 ### CI/CD
 
-`.gitlab-ci.yml` defines 4 stages: `prepare` → `update-package` → `commit` → `deploy`. Triggered by webhook, manual run, or schedule. `VERSION` can be overridden as a CI variable.
+`.gitlab-ci.yml` defines 4 stages: `prepare` → `update-package` → `commit` → `deploy`. Triggered by webhook, manual run, or schedule. `APP` and `VERSION` can be overridden as CI variables.
+
+**Key difference from local:** CI runs each script directly inside native distro images (`ubuntu:latest`, `fedora:latest`, `alpine:latest`) — not via `docker/compose.yml`. The three `update-package` jobs (`update_deb`, `update_rpm`, `update_apk`) run in parallel. The `commit` stage (`push_changes`) collects all artifacts and pushes back to `main` using `GITLAB_TOKEN` (a project access token with `write_repository` scope — required CI variable).
+
+The `update_apk` CI job sets `GITHUB_WORKSPACE=""` before calling `bin/update-alpine-repo.sh` to force the Alpine RSA key path to `/builds/afonsodemori/packages/private.rsa` (the CI runner workspace path the script hardcodes).
 
 ## Code Style
 
