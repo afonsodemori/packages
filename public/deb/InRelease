@@ -4,40 +4,40 @@ Hash: SHA512
 Architectures: amd64 arm64
 Codename: ./
 Components: main
-Date: Sun, 03 May 2026 13:23:46 +0000
+Date: Sun, 03 May 2026 13:32:51 +0000
 Description: afonso.dev Package Repository
 Label: afonso.dev
 Origin: afonso.dev
 Suite: stable
 MD5Sum:
- 86a99c7cc0bde3c38a9785e0ff9a6ad9             6180 Packages
- 3854afb90949e87db940320eb0615cf8             1713 Packages.gz
- 5d0729f542fa790a0cec8b4dfbcbdd79              189 Release
+ 428148bf9526724a53cfdd3ccb3ae319             7252 Packages
+ d14e6ae66aaefed3b6a26b3229b82243             1929 Packages.gz
+ aea9649813a3c5808ce3106be6ca3a59              189 Release
 SHA1:
- 05fe5aa9c45fc23136069df3212c2727488986b4             6180 Packages
- 0a8983fa9822bec3e4336b602e89a4375168e256             1713 Packages.gz
- 5662bfda76df047db5e79929de885c2be2229ea5              189 Release
+ 7886d856a782d0802abdd944b0cbd0e1789e2396             7252 Packages
+ 84236aed278913b08336156c6460e27743703193             1929 Packages.gz
+ 935b98b865e3fdb1eaceaa4506786685c7f7ba7c              189 Release
 SHA256:
- 11b1f5b671a8d2f20805c46d857fff9f2afd59e5c0267dc441cca5191fd431b3             6180 Packages
- a641b86a1787e431ec2766f5eaa69dacdb2fe1030ee2c947c6d9da3e1611f0cf             1713 Packages.gz
- 7133023c388804cd6073a09f703ba2b1e08af2b92ed7247e306090b8600b62ef              189 Release
+ 7b069efc33ce636767e6691092eeb1a914ad87924bfc4ba77c61076c4acba0e7             7252 Packages
+ 9f8222daf9911a5925df6c79130bf64c45a1a2dca956a862e7d45f3ad01938f6             1929 Packages.gz
+ 42b287d3ee7a77f8f80c29096802003b2ef772a119e80eb9403b28b9e6749150              189 Release
 SHA512:
- b41ad214c90139ff84b584bfc9c0eb2c4e0bc6d3d3bffac7c1793f1f55d4a13fae07d77b695bbeb03e5219cbf594b1bf091010e1eecb7c520a177b9213d5147c             6180 Packages
- bf2fd39aaeecdddf4386837a1bf2945412e5c36cc262ed470171048bcd158056ae4d58d76260bcf40213c950486bc56e719b4f6e042809abd128cda7cb675f5c             1713 Packages.gz
- 126e8d4bf1f0b6d8b9b7c4fe67c17c9844569421dd7ed214b4ee38270ec1c908ed61e6752873922d09e3f204bde6491fda1ebc689c40ec985fdee11189b5bea2              189 Release
+ b274ae0a62b052a878964a1fdc0ae78629a86843e33175f37d20313a7cb4e559e31541830203369dc5e391e8f90ba50c6fa41f8f4de04f5c2d21bdc7ee6a38d2             7252 Packages
+ a43c272daa87adbc6599b46ff9bb553e42dbc41ea1a139b8b2e0c457053987975272fe8c64be07b4ea602e56ca06db595807a68d8233c230d0124fdec678ea92             1929 Packages.gz
+ b49157d4ab6b7187a7c42411e230f1f59d82e7a7936e5128309227165e12ba4c6cee47fbf17a1bbf6b6b5e64be376b3d99ea4c5f2c4519f2bab5a0448cda2a39              189 Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE5IpdRDMUHHhlKoBHhH2S8iiSYKcFAmn3TGIACgkQhH2S8iiS
-YKfx+Q//TfwS5eeuNxyfW82CUvAaoSSh6bWKySz5baHnTB/CNG7XmbaGrb5u4g41
-5yyUtqF9E0hrRxVRqXDGjZMCqSu0/XoypQult1sC9oCBHWb5BgkOcorqOocNK8n8
-IKV1EmqvuELcf9iDCupYRQdObTTD826KW0WFzte3UfceRNPPAxu+TlIcRsBiZioH
-ihmGuugDNc4muVcM00Y8mWtePQTB3jkgwg127SeuEjeaLI8TwYl4IoFLCNUCaHfj
-IGxDumblED6p35341O0Ie3SRlsjBBE/CjkKZR78Ivjl1gWtOXUw9fPwGraxhf15z
-nefOSqlHkATTm+9T2VnzgG3XJjXxL9ui3dfHiO1hqJ4AuMvbKkfAfcpxWToW11Nu
-IMQgt/yEtNDCF1a8+Af/45pGWthetJUbvdhF6U0oHmPWkeEJFcI8TNBCCoTtm+k/
-t5wmfCswyXJFXWASTB2OeRtEZgfXmThRjtZhldHp+qpOCYjCVoEfsiAvb9RJbCh2
-lOUFZ3UfsUyByMw6c0ykMWdmetPK8q4C5NNZuDfcdYWxa80v3aBUlgn4+lk61tyB
-x3rRf1BrYpBEy6QqApWx3SRY6zvBrb7REpfRbWzVNVRP2/8508vEQY07x1g0ujjB
-5gVROmGOg3ew7ASIVGAwigZJC2m1AICzaYvJ+o7CFVu2GOl9h8s=
-=qQRC
+iQIzBAEBCgAdFiEE5IpdRDMUHHhlKoBHhH2S8iiSYKcFAmn3ToMACgkQhH2S8iiS
+YKdQBA/8DqeO/vTir14+Km9teBmG9g00rziurK5JQnw1IdVQ6zKHfdoNwL+9tuK+
+9lL2+ZKiNZAbTEGoxEup6Nun7tvQlOAil4C3UjnCTK1uHSRIhPT3a7IE57ONN6Yj
+nxwtvL5irXDRsSUvylJZDE4JH45xoyX7AsfZ4t4q2C06jVvzIlAOlGZs+G66B5s1
+pBqPPRfbKvZ6VV2xJpa19TOezN8dwRsXeXs9BqXWE+W6xta4nCa8dxixZlo/cFaf
+VXdErq/MRinkGQ6OGPxYQoXvqBm3wHSex5KcPRanvG3faeQIegsnDsA9XE/nxdAO
+WBb025q7Mw8yeJ8/BaB82OW74PF3JSX17T6J9zapiQVDF06Hd9WWEy4ISPvQya3V
+YbBILl+1KDnSrYckJktsFIJ5atojewHGYqKKl8lANzXJgqS2KLQQwWFWwTFaUpC2
+x/ACMyCFRLB9GJRUWO35/uPGffJzbmRt+ROOIDJ8ITWanu/2Box/68BQ74YfxMow
+GZlWvmvXWbIMmSvNTSGLn57S+atzTZVgZCKXvhoeiJeMWc10rIAbWPv3Ellrq0qy
+MrBlIhS1sLmSqJOrwMoUrUFHDvhTTKuohRapH3P78vPdITmdZ+aZdKUAtUh6uUwL
+UfTIb3/kihT9yVeaTlkbuJzMY1uyh1DjLSP+zsuV+jpBuqwvKhY=
+=1bUq
 -----END PGP SIGNATURE-----
