@@ -15,6 +15,7 @@ Description: Exports resume documents from Google Docs and uploads new versions 
 Package: afonsodev-resume-sync
 Version: 1.2.0
 Architecture: amd64
+Architecture-Variant: amd64v1
 Maintainer: Afonso de Mori <me@afonso.dev>
 Installed-Size: 12430
 Filename: ./afonsodev-resume-sync_1.2.0_linux_amd64.deb
@@ -25,11 +26,40 @@ SHA256: dd00ec16681b41d30ec0b9c3ad4864f82b4208103bbbe8ac3583a37d77b25434
 Priority: optional
 Homepage: https://afonso.dev/resume-sync
 Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
+
+Package: afonsodev-resume-sync
+Version: 1.3.0
+Architecture: arm64
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 11744
+Filename: ./afonsodev-resume-sync_1.3.0_linux_arm64.deb
+Size: 6097828
+MD5sum: 5a787e32e74f1291cb1f519c0c90e127
+SHA1: f30b1d28877c9023b061e55ab0efb7bd9fff9a60
+SHA256: dbf5fc9eda0f8e60b6c1ba3502f9cc35a43d1b5193635ca99503b18db3800ec2
+Priority: optional
+Homepage: https://afonso.dev/resume-sync
+Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
+
+Package: afonsodev-resume-sync
+Version: 1.3.0
+Architecture: amd64
 Architecture-Variant: amd64v1
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 12612
+Filename: ./afonsodev-resume-sync_1.3.0_linux_amd64.deb
+Size: 6669024
+MD5sum: 229943d77e27c21184a9d2b5b02be92a
+SHA1: 18ba3d43c3281610a891dee7d041414886feb162
+SHA256: 7d0c4e1c7c1db7e087d9d5391f3143b6d5a15607e18e63e51c1699e0f7962d11
+Priority: optional
+Homepage: https://afonso.dev/resume-sync
+Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
 
 Package: fns-cli
 Version: 0.2.3
 Architecture: amd64
+Architecture-Variant: amd64v1
 Maintainer: Afonso de Mori <me@afonso.dev>
 Installed-Size: 13449
 Filename: ./fns-cli_0.2.3_linux_amd64.deb
@@ -40,7 +70,6 @@ SHA256: 06bb82828f1650f8ffa344e6a60410ef78330b1d9c6eb873b113cde5158ad55c
 Priority: optional
 Homepage: https://fns-cli.afonso.dev
 Description: Streamline your dev workflow from the terminal.
-Architecture-Variant: amd64v1
 License: MIT
 
 Package: fns-cli
@@ -61,6 +90,7 @@ License: MIT
 Package: fns-cli
 Version: 0.3.0
 Architecture: amd64
+Architecture-Variant: amd64v1
 Maintainer: Afonso de Mori <me@afonso.dev>
 Installed-Size: 13721
 Filename: ./fns-cli_0.3.0_linux_amd64.deb
@@ -71,7 +101,6 @@ SHA256: 600b2c0cf35b26e779533602e5748f2bd24c314521b0866d3a5015e1a6905644
 Priority: optional
 Homepage: https://fns-cli.afonso.dev
 Description: Streamline your dev workflow from the terminal.
-Architecture-Variant: amd64v1
 License: MIT
 
 Package: fns-cli
@@ -106,6 +135,7 @@ Description: Streamline your dev workflow from the terminal.
 Package: fns-cli
 Version: 0.4.0
 Architecture: amd64
+Architecture-Variant: amd64v1
 Maintainer: Afonso de Mori <me@afonso.dev>
 Installed-Size: 13789
 Filename: ./fns-cli_0.4.0_linux_amd64.deb
@@ -116,5 +146,4 @@ SHA256: fc772b9582eb46c4ec379d751affa85867cc98c2bb56462bb9ef7edd7dad91a9
 Priority: optional
 Homepage: https://fns-cli.afonso.dev
 Description: Streamline your dev workflow from the terminal.
-Architecture-Variant: amd64v1
 
