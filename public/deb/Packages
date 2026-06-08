@@ -143,6 +143,35 @@ Priority: optional
 Homepage: https://afonso.dev/resume-sync
 Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
 
+Package: afonsodev-resume-sync
+Version: 1.3.4
+Architecture: arm64
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 11742
+Filename: ./afonsodev-resume-sync_1.3.4_linux_arm64.deb
+Size: 6096646
+MD5sum: 8f71dc7884b11bea8759128877d9d138
+SHA1: 66ceb48cfe30361f4fff3c7d070b66e185787626
+SHA256: f206b7613689b7a2cc62396ee179c71ee2af405f38ecc707a25a4ee2389d7f0a
+Priority: optional
+Homepage: https://afonso.dev/resume-sync
+Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
+
+Package: afonsodev-resume-sync
+Version: 1.3.4
+Architecture: amd64
+Architecture-Variant: amd64v1
+Maintainer: Afonso de Mori <me@afonso.dev>
+Installed-Size: 12614
+Filename: ./afonsodev-resume-sync_1.3.4_linux_amd64.deb
+Size: 6671658
+MD5sum: 7f5804df9beeb38f1c5ef0b983e7fb94
+SHA1: 332b8169fa0a893eb9213c969b8326c1935b8e58
+SHA256: 37944647b1c8f268fd26b19e1771ac4ca2172a11be79ecb284ee57750dbe9f36
+Priority: optional
+Homepage: https://afonso.dev/resume-sync
+Description: Exports resume documents from Google Docs and uploads new versions to Cloudflare R2.
+
 Package: fns-cli
 Version: 0.2.3
 Architecture: amd64
