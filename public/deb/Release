@@ -1,24 +1,24 @@
 Architectures: amd64 arm64
 Codename: ./
 Components: main
-Date: Mon, 08 Jun 2026 13:16:02 +0000
+Date: Mon, 08 Jun 2026 14:17:45 +0000
 Description: afonso.dev Package Repository
 Label: afonso.dev
 Origin: afonso.dev
 Suite: stable
 MD5Sum:
- 8cc53979748e7d8b03fc1207b56121d9             6070 Packages
- 23a04ce221dffec336fee9cecbcd67f7             1684 Packages.gz
- 777b65c791116927102f2b12fbf204bb              189 Release
+ 77aedc55a334d5375f59ba4423ca9b0a             7142 Packages
+ f19eef6766becd874b1cfee34f9b8267             1886 Packages.gz
+ 2fe291e2017d398adb55b6407d0dade9              189 Release
 SHA1:
- 476693a35b159e4989a9b89daebdd2664efe8783             6070 Packages
- 79b650b2e31bd8d249680a2adf55f60461aa6775             1684 Packages.gz
- cdbdec65ea39dd34829facd48c79eed2388d3c28              189 Release
+ c4a8d8c300c7ab29ec3877ffe188e70a0291d268             7142 Packages
+ 99720db716d1b44492a917f73cff14381d13aa3d             1886 Packages.gz
+ d608aa599b11d50a0f3b3c1385803d7402e3b0c2              189 Release
 SHA256:
- 7fef9c806136ee3c87c96064be013037f5b08cafa3341b0c427d9cddf2a82c31             6070 Packages
- 72532984258033b492e7750b3b15c1acb777ec99fb0c8f304fc30deb14a848f5             1684 Packages.gz
- b780825546be5ce63fb75b7c5a359c7894d181d1546150a059a55ae553392a2b              189 Release
+ 3ccfd827561d293008bb91bfa86b5f2c7e6ed2d30f9817c20b64c291e82f4e19             7142 Packages
+ f00112961f01ec268d484e3eb11238a644745080e34583a76de742d34dd961ab             1886 Packages.gz
+ 3276526829eceba4ad4f2155d4cad2616e949d17b10089cae98761185b4f8c15              189 Release
 SHA512:
- 9d9e09d5e121dd4c28ffe57ce87ffb5aa19116535b3e4940af931ec063b0163d6731f19a3b8a93f7dc8f3e7be7af4cd317edad062978f8e69ee6b4b4d727e2bb             6070 Packages
- 572f65cfaefde7b3099fd43b08f673a95527a5e34fbfad072d58b09bf7f185523558a5c34f849b4e224700faec2a1a0d7056e9a5d90185632205b9d9ce874cb1             1684 Packages.gz
- 68f448aa3550afa5fb565d27cdbd886e0a81710bb38f7cc9982349ed16985cf07f6bc765037657a9ffcd114d8343334f3f8b8ae02b614b9a7104bd981e47ff8f              189 Release
+ dd69f83ba5ab35c06fd83b307c76b56fa3be0480c5daa4cabe2145560ff61405fd684eb21abf29d9b3c3898739ca27878f8754c825b278710886dfb649d0546b             7142 Packages
+ 98648b8b0a2eb920d1c007c448be498b53070280b9c15680e5f6bf7cc42f05be88103ec960a26b852c63daa40f7a1ecd731ee028dbf46ed0e3ec70fe4ecd28b2             1886 Packages.gz
+ 398468405e303c4253fd7c385df24b3e1f0cc4aec7a1a7fb35f61942ca7914a89568fbdbad42e58d75ae62f2d154d5bf9ed9545038fcce831d019a8790ebc488              189 Release
